@@ -60,7 +60,7 @@ A **SAS_Fact** class is provided to allow you to collect results from you custom
 
 Let's you've written a script that does some analysis like so:
 
-.. code-block:: 
+.. code-block:: rst
 
 	proc sql noprint;
             create table analysis as
@@ -86,7 +86,7 @@ Step 2: Output the value in question using **%stdout()**.
 Our altered SAS script now looks like:
 
 	
-.. code-block::
+.. code-block:: rst
 
 	%include "/wrds/lib/utility/stdout.sas";
 
