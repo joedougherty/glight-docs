@@ -10,7 +10,7 @@ Welcome to Greenlight's documentation!
    :maxdepth: 2
    :hidden:
 
-   src/intro.rst
+   src/overview.rst
 
 .. toctree::
    :caption: Facts:
@@ -43,5 +43,17 @@ Welcome to Greenlight's documentation!
 
 
    src/convenience_functions.rst
+
+
+Introduction 
+============
+
+
+**greenlight** is a lightweight dataset validation framework. 
+
+It is used to ensure that a new data release is ready for publication to production. 
+
+**greenlight** facilitates validation by running several default tests to compare the development and production datasets. In addition, **greenlight** gives the developer the power to author their own tests.
+
 
 .. include:: src/intro.rst  
