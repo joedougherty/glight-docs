@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Built-in Facts &mdash; Greenlight 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Crafting Custom Facts" href="crafting_custom_facts.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Greenlight
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Facts:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Built-in Facts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#percent-null"><strong>Percent_Null</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#min-date"><strong>Min_Date</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#max-date"><strong>Max_Date</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#null-variables"><strong>Null_Variables</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_facts.html">Crafting Custom Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gatheringfacts.html">Manually Gathering Facts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_tests.html">Crafting Custom Tests</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basicexample.html">A Basic Usage Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advexample.html">Beyond Basic Usage: Specifying Table Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessing_history.html">Accessing Validation History</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="convenience_functions.html">Convenience Functions</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Greenlight</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Built-in Facts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/builtin_facts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="built-in-facts">
+<h1>Built-in Facts<a class="headerlink" href="#built-in-facts" title="Permalink to this headline">¶</a></h1>
+<p><strong>greenlight</strong> provides a few built-in facts.</p>
+<div class="section" id="percent-null">
+<h2><strong>Percent_Null</strong><a class="headerlink" href="#percent-null" title="Permalink to this headline">¶</a></h2>
+<p>Find the percent null for a given variable in the provided dataset (in both dev and prod).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pn</span> <span class="o">=</span> <span class="n">Percent_Null</span><span class="p">(</span>
+    <span class="n">variable</span><span class="p">,</span>       <span class="c1"># variable in question (Note: this is case-sensitive)</span>
+    <span class="n">path_to_lib</span><span class="p">,</span>    <span class="c1"># directory (ex: &quot;/wrds/ff/sasdata&quot;)</span>
+    <span class="n">dsn</span><span class="p">,</span>            <span class="c1"># dataset (ex: &quot;factors_monthly&quot;)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>1.) Called directly – good for verifying behavior.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span> <span class="o">=</span> <span class="n">Percent_Null</span><span class="p">(</span><span class="s1">&#39;PRICE&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/levin/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;healthcare_ma&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="go">{&#39;dev_healthcare_ma_PRICE_percent_null&#39;: 0.39591,</span>
+<span class="go"> &#39;prod_healthcare_ma_PRICE_percent_null&#39;: 0.39591}</span>
+</pre></div>
+</div>
+<p>2.) As a custom fact.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the custom fact to your `custom_facts` list.</span>
+<span class="n">custom_facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Percent_Null</span><span class="p">(</span><span class="s1">&#39;PRICE&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/levin/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;healthcare_ma&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="min-date">
+<h2><strong>Min_Date</strong><a class="headerlink" href="#min-date" title="Permalink to this headline">¶</a></h2>
+<p>Find the minimum date value for the provided variable in the provided dataset (in both dev and prod).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">min_date</span> <span class="o">=</span> <span class="n">Min_Date</span><span class="p">(</span>
+    <span class="n">date_variable</span><span class="p">,</span>              <span class="c1"># date variable in question (Note: this is case-sensitive)</span>
+    <span class="n">path_to_lib</span><span class="p">,</span>                <span class="c1"># directory (ex: &quot;/wrds/ff/sasdata&quot;)</span>
+    <span class="n">dsn</span><span class="p">,</span>                        <span class="c1"># dataset (ex: &quot;factors_monthly&quot;)</span>
+    <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;yymmdd10.&#39;</span><span class="p">,</span>    <span class="c1"># [Optional] date output format (yymmdd10. by default)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>1.) Called directly – good for verifying behavior.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">min_date</span> <span class="o">=</span> <span class="n">Min_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">min_date</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="go">{&#39;dev_factors_daily_min_date&#39;: &#39;1926-07-01&#39;,</span>
+<span class="go"> &#39;prod_factors_daily_min_date&#39;: &#39;1926-07-01&#39;}</span>
+</pre></div>
+</div>
+<p>2.) As a custom fact:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the fact to your `custom_facts` list.</span>
+<span class="n">custom_facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">Min_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Optionally, you can set the date format for your output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Min_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;yymmdd8.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="max-date">
+<h2><strong>Max_Date</strong><a class="headerlink" href="#max-date" title="Permalink to this headline">¶</a></h2>
+<p>Find the maximum date value for the provided variable in the provided dataset (in both dev and prod).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_date</span> <span class="o">=</span> <span class="n">Max_Date</span><span class="p">(</span>
+    <span class="n">date_variable</span><span class="p">,</span>              <span class="c1"># date variable in question (Note: this is case-sensitive)</span>
+    <span class="n">path_to_lib</span><span class="p">,</span>                <span class="c1"># directory (ex: &quot;/wrds/ff/sasdata&quot;)</span>
+    <span class="n">dsn</span><span class="p">,</span>                        <span class="c1"># dataset (ex: &quot;factors_monthly&quot;)</span>
+    <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;yymmdd10.&#39;</span><span class="p">,</span>    <span class="c1"># [Optional] date output format (yymmdd10. by default)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>1.) Called directly – good for verifying behavior.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">max_date</span> <span class="o">=</span> <span class="n">Max_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">max_date</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="go">{&#39;dev_factors_daily_max_date&#39;: &#39;2018-06-29&#39;,</span>
+<span class="go"> &#39;prod_factors_daily_max_date&#39;: &#39;2018-08-31&#39;}</span>
+</pre></div>
+</div>
+<p>2.) As a custom fact:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the fact to your `custom_facts` list.</span>
+<span class="n">custom_facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Max_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">))</span>
+
+<span class="n">Optionally</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="nb">set</span> <span class="n">the</span> <span class="n">date</span> <span class="nb">format</span> <span class="k">for</span> <span class="n">your</span> <span class="n">output</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Max_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;yymmdd8.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="null-variables">
+<h2><strong>Null_Variables</strong><a class="headerlink" href="#null-variables" title="Permalink to this headline">¶</a></h2>
+<p>Discover which variables in a given table are composed entirely of missing values.</p>
+<p>1.) Called directly – good for verifying behavior.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">null_vars</span> <span class="o">=</span> <span class="n">Null_Variables</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_monthly&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">null_vars</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="go">{&#39;dev_factors_daily_null_variables&#39;: [],</span>
+<span class="go"> &#39;prod_factors_daily_null_variables&#39;: []}</span>
+</pre></div>
+</div>
+<p>2.) As a custom fact.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the custom fact to your `custom_facts` list.</span>
+<span class="n">custom_facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Null_Variable</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_monthly&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="crafting_custom_facts.html" class="btn btn-neutral float-right" title="Crafting Custom Facts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joe Dougherty
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

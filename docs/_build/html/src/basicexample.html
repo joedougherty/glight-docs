@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>A Basic Usage Example &mdash; Greenlight 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Beyond Basic Usage: Specifying Table Keys" href="advexample.html" />
+    <link rel="prev" title="Crafting Custom Tests" href="crafting_custom_tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Greenlight
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Facts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="builtin_facts.html">Built-in Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_facts.html">Crafting Custom Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gatheringfacts.html">Manually Gathering Facts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_tests.html">Crafting Custom Tests</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">A Basic Usage Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advexample.html">Beyond Basic Usage: Specifying Table Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessing_history.html">Accessing Validation History</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="convenience_functions.html">Convenience Functions</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Greenlight</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>A Basic Usage Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/basicexample.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a-basic-usage-example">
+<h1>A Basic Usage Example<a class="headerlink" href="#a-basic-usage-example" title="Permalink to this headline">¶</a></h1>
+<p>Here is a short example of how one could go about specifying Facts and Tests for their product.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">collect_facts</span><span class="p">,</span> <span class="n">Fact</span><span class="p">,</span> <span class="n">Min_Date</span><span class="p">,</span> <span class="n">SAS_Fact</span>
+
+
+<span class="n">custom_facts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># This gets added to the dictionary in results[&#39;custom_facts&#39;]:</span>
+    <span class="c1">#   {&#39;dev_smb_null_rec_count&#39;: &lt;dev count&gt;,</span>
+    <span class="c1">#    &#39;prod_smb_null_rec_count&#39;: &lt;prod count&gt;}</span>
+    <span class="n">Fact</span><span class="p">(</span><span class="s1">&#39;smb_null_rec_count&#39;</span><span class="p">,</span> <span class="n">path_to_lib</span><span class="o">=</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="n">dsn</span><span class="o">=</span><span class="s1">&#39;factors_daily&#39;</span><span class="p">,</span> <span class="n">fact</span><span class="o">=</span><span class="s1">&#39;count(*)&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;smb = .&#39;</span><span class="p">),</span>
+
+    <span class="c1"># This gets added to the dictionary in results[&#39;custom_facts&#39;]:</span>
+    <span class="c1">#   {&#39;dev_factors_monthly_min_date&#39;: &lt;dev min date&gt;,</span>
+    <span class="c1">#    &#39;prod_factors_monthly_min_date&#39;: &lt;prod min date&gt;}</span>
+    <span class="n">Min_Date</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">path_to_lib</span><span class="o">=</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="n">dsn</span><span class="o">=</span><span class="s1">&#39;factors_monthly&#39;</span><span class="p">),</span>
+
+    <span class="c1"># This gets added to the dictionary in results[&#39;custom_facts&#39;]:</span>
+    <span class="c1">#   {&#39;custom_count&#39;: &lt;custom count script result&gt;}</span>
+    <span class="c1">#</span>
+    <span class="c1"># For example, we can expect this program to return 100.</span>
+    <span class="n">SAS_Fact</span><span class="p">(</span><span class="s1">&#39;custom_count&#39;</span><span class="p">,</span> <span class="s1">&#39;../examples/custom_count.sas&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Because result[&#39;custom_facts&#39;] is a dictionary, it&#39;s important to use unique fact names.</span>
+    <span class="c1">#</span>
+    <span class="c1"># If you have two facts with the same name, the value in results[&#39;custom_facts&#39;] will</span>
+    <span class="c1"># correspond to the last obtained fact of that name.</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">smb_null_recs_test</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;custom_facts&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;dev_smb_null_rec_count&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;prod_smb_null_rec_count&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">factors_monthly_min_date_test</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;custom_facts&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;dev_factors_monthly_min_date&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;1927-09-01&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">custom_fact_example_test</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;custom_facts&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;custom_count&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="n">custom_tests</span> <span class="o">=</span> <span class="p">[</span><span class="n">smb_null_recs_test</span><span class="p">,</span> <span class="n">factors_monthly_min_date_test</span><span class="p">,</span> <span class="n">custom_fact_example_test</span><span class="p">]</span>
+
+
+<span class="n">validate</span><span class="p">(</span>
+    <span class="s1">&#39;ff.all&#39;</span><span class="p">,</span>
+    <span class="n">custom_facts</span><span class="o">=</span><span class="n">custom_facts</span><span class="p">,</span>
+    <span class="n">custom_tests</span><span class="o">=</span><span class="n">custom_tests</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="advexample.html" class="btn btn-neutral float-right" title="Beyond Basic Usage: Specifying Table Keys" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="crafting_custom_tests.html" class="btn btn-neutral float-left" title="Crafting Custom Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joe Dougherty
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

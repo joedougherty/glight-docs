@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Accessing Validation History &mdash; Greenlight 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Convenience Functions" href="convenience_functions.html" />
+    <link rel="prev" title="Beyond Basic Usage: Specifying Table Keys" href="advexample.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Greenlight
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Facts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="builtin_facts.html">Built-in Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_facts.html">Crafting Custom Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gatheringfacts.html">Manually Gathering Facts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_tests.html">Crafting Custom Tests</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basicexample.html">A Basic Usage Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advexample.html">Beyond Basic Usage: Specifying Table Keys</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accessing Validation History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#last-comparison-product-code"><strong>last_comparison(product_code)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#all-comparisons-product-code"><strong>all_comparisons(product_code)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#all-comparisons-dict-product-code"><strong>all_comparisons_dict(product_code)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-run-prev-results-run-default-tests-true-custom-tests-none-log-dir-none"><strong>test_run(prev_results, run_default_tests=True, custom_tests=None, log_dir=None)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-last-comparison-product-code-run-default-tests-true-custom-tests-none-log-dir-none"><strong>test_last_comparison(product_code, run_default_tests=True, custom_tests=None, log_dir=None)</strong></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="convenience_functions.html">Convenience Functions</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Greenlight</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Accessing Validation History</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/accessing_history.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="accessing-validation-history">
+<h1>Accessing Validation History<a class="headerlink" href="#accessing-validation-history" title="Permalink to this headline">¶</a></h1>
+<p>Any time you run <strong>validate</strong>, the comparison results are cached on the file system.</p>
+<p>There are a few functions that provide access to previous comparisons:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">last_comparison</span><span class="p">,</span> <span class="n">all_comparisons</span><span class="p">,</span> <span class="n">all_comparisons_dict</span>
+</pre></div>
+</div>
+<div class="section" id="last-comparison-product-code">
+<h2><strong>last_comparison(product_code)</strong><a class="headerlink" href="#last-comparison-product-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Retrieve</span> <span class="n">the</span> <span class="n">last</span><span class="o">-</span><span class="n">known</span> <span class="n">comparison</span> <span class="k">for</span> <span class="n">a</span> <span class="n">given</span> <span class="n">product</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This returns the last comparison that took place.</p>
+<p>This contains the <strong>file-level comparisons</strong>, <strong>table-level comparisons</strong>, and any <strong>custom facts</strong> set.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prev_results</span> <span class="o">=</span> <span class="n">last_comparison</span><span class="p">(</span><span class="s1">&#39;ff.all&#39;</span><span class="p">)</span> <span class="c1"># That&#39;s it!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="all-comparisons-product-code">
+<h2><strong>all_comparisons(product_code)</strong><a class="headerlink" href="#all-comparisons-product-code" title="Permalink to this headline">¶</a></h2>
+<p>Return a list of historical comparisons.</p>
+<p>This returns a list of all of the known comparisons (from earliest to latest).</p>
+<p>You can retrieve the same comparison results <strong>by date/timestamp</strong> by using <strong>all_comparisons_dict</strong>.</p>
+</div>
+<div class="section" id="all-comparisons-dict-product-code">
+<h2><strong>all_comparisons_dict(product_code)</strong><a class="headerlink" href="#all-comparisons-dict-product-code" title="Permalink to this headline">¶</a></h2>
+<p>Return a collection of historical comparisons as a dictionary.</p>
+<p>Each key is the validation date/timestamp of the previous run.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">historical_comps</span> <span class="o">=</span> <span class="n">all_comparisons_dict</span><span class="p">(</span><span class="s1">&#39;ff.all&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">historical_comps</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">    [u&#39;20181008_20_44&#39;,</span>
+<span class="go">     u&#39;20181010_12_59&#39;,</span>
+<span class="go">     u&#39;20181010_13_02&#39;,</span>
+<span class="go">     u&#39;20181010_16_01&#39;,</span>
+<span class="go">     u&#39;20181010_16_17&#39;,</span>
+<span class="go">     u&#39;20181010_16_31&#39;,</span>
+<span class="go">     u&#39;20181010_17_23&#39;,</span>
+<span class="go">     u&#39;20181010_17_27&#39;,</span>
+<span class="go">     u&#39;20181011_16_01&#39;,</span>
+<span class="go">     u&#39;20181011_16_30&#39;,</span>
+<span class="go">     u&#39;20181011_16_56&#39;,</span>
+<span class="go">     u&#39;20181011_17_14&#39;,</span>
+<span class="go">     u&#39;20181011_17_24&#39;,</span>
+<span class="go">     u&#39;20181012_15_36&#39;,</span>
+<span class="go">     u&#39;20181015_13_43&#39;,</span>
+<span class="go">     u&#39;20181015_13_48&#39;,</span>
+<span class="go">     u&#39;20181015_14_01&#39;]</span>
+</pre></div>
+</div>
+<p>This way you can retrieve specific results.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can pass this to test_run()</span>
+<span class="n">prev_result</span> <span class="o">=</span> <span class="n">historical_comps</span><span class="p">[</span><span class="s1">&#39;20181010_16_31&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-run-prev-results-run-default-tests-true-custom-tests-none-log-dir-none">
+<h2><strong>test_run(prev_results, run_default_tests=True, custom_tests=None, log_dir=None)</strong><a class="headerlink" href="#test-run-prev-results-run-default-tests-true-custom-tests-none-log-dir-none" title="Permalink to this headline">¶</a></h2>
+<p>You can see how a given results set responds to tests by using the <strong>test_run</strong> function.</p>
+<p>Simulate a validation run using a previously generated set of results.</p>
+<p>This can help you see how the validation results would be affected by using different combinations of custom tests.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">log_dir</span></code> to specify a custom log location.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prev_result</span> <span class="o">=</span> <span class="n">last_comparison</span><span class="p">(</span><span class="s1">&#39;ff.all&#39;</span><span class="p">)</span>
+
+<span class="c1"># See how validation would be affected by a set of new/different tests</span>
+<span class="n">test_run</span><span class="p">(</span><span class="n">prev_result</span><span class="p">,</span> <span class="n">custom_tests</span><span class="o">=</span><span class="p">[</span><span class="o">&lt;</span><span class="n">some</span> <span class="n">new</span> <span class="n">tests</span> <span class="n">specified</span> <span class="n">here</span><span class="o">&gt;</span><span class="p">])</span>
+
+<span class="c1"># See how validation would be affected by *no* custom tests.</span>
+<span class="n">test_run</span><span class="p">(</span><span class="n">prev_result</span><span class="p">,</span> <span class="n">custom_tests</span><span class="o">=</span><span class="p">[])</span>
+
+<span class="n">test_run</span><span class="p">(</span>
+    <span class="n">prev_results</span><span class="p">,</span>
+    <span class="n">custom_tests</span><span class="o">=</span><span class="p">[</span><span class="o">&lt;</span><span class="n">some</span> <span class="n">custom</span> <span class="n">tests</span><span class="o">&gt;</span><span class="p">,],</span>
+    <span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;/home/wrds/josepd/tmp_log_dir&#39;</span><span class="p">,</span> <span class="c1"># Here I&#39;m altering the location the log will be written to</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-last-comparison-product-code-run-default-tests-true-custom-tests-none-log-dir-none">
+<h2><strong>test_last_comparison(product_code, run_default_tests=True, custom_tests=None, log_dir=None)</strong><a class="headerlink" href="#test-last-comparison-product-code-run-default-tests-true-custom-tests-none-log-dir-none" title="Permalink to this headline">¶</a></h2>
+<p>This function is a convenience wrapper around <code class="docutils literal notranslate"><span class="pre">test_run()</span></code> + <code class="docutils literal notranslate"><span class="pre">last_comparison()</span></code>.</p>
+<p>This will:</p>
+<ul class="simple">
+<li><p>find the last comparison (automatically)</p></li>
+<li><p>run the specified tests against those results</p></li>
+<li><p>produce a log of the results</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="convenience_functions.html" class="btn btn-neutral float-right" title="Convenience Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="advexample.html" class="btn btn-neutral float-left" title="Beyond Basic Usage: Specifying Table Keys" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joe Dougherty
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Convenience Functions &mdash; Greenlight 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Accessing Validation History" href="accessing_history.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Greenlight
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Facts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="builtin_facts.html">Built-in Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_facts.html">Crafting Custom Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gatheringfacts.html">Manually Gathering Facts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_tests.html">Crafting Custom Tests</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basicexample.html">A Basic Usage Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advexample.html">Beyond Basic Usage: Specifying Table Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessing_history.html">Accessing Validation History</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Convenience Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#average-runtime-product-code"><strong>average_runtime(product_code)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-variables-path-to-lib-dsn"><strong>get_variables(path_to_lib, dsn)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-percent-null-variable-path-to-lib-dsn"><strong>get_percent_null(variable, path_to_lib, dsn)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-rec-count-path-to-lib-dsn"><strong>get_rec_count(path_to_lib, dsn)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-keys-path-to-lib-dsn"><strong>get_keys(path_to_lib, dsn)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-counts-by-keys-path-to-lib-dsn-keys-none"><strong>get_counts_by_keys(path_to_lib, dsn, keys=’NONE’)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-fact-path-to-lib-dsn-fact-where-1"><strong>get_fact(path_to_lib, dsn, fact, where=’1’)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-null-variables-path-to-lib-dsn"><strong>get_null_variables(path_to_lib, dsn)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-encoding-path-to-lib-dsn"><strong>get_encoding(path_to_lib, dsn)</strong></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Greenlight</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Convenience Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/convenience_functions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="convenience-functions">
+<h1>Convenience Functions<a class="headerlink" href="#convenience-functions" title="Permalink to this headline">¶</a></h1>
+<p>There are a handful of functions at your disposal for making quick interactive queries.</p>
+<p>These can be helpful during the fact/test development process.</p>
+<p>Unless noted otherwise, these can all be imported from the top-level <strong>greenlight</strong> module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">get_variables</span><span class="p">,</span> <span class="n">get_percent_null</span><span class="p">,</span> <span class="n">get_rec_count</span> <span class="c1"># etc...</span>
+</pre></div>
+</div>
+<div class="section" id="average-runtime-product-code">
+<h2><strong>average_runtime(product_code)</strong><a class="headerlink" href="#average-runtime-product-code" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Returns the average (mean, non-weighted) duration for validation runs by product_code.</p>
+<p>Duration is provided in seconds.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">average_runtime</span><span class="p">(</span><span class="s1">&#39;ff.all&#39;</span><span class="p">)</span>
+<span class="go">24.60149371623993</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="get-variables-path-to-lib-dsn">
+<h2><strong>get_variables(path_to_lib, dsn)</strong><a class="headerlink" href="#get-variables-path-to-lib-dsn" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Returns a list of all the variables referenced by the table <cite>dsn</cite> in <cite>path_to_lib</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_variables</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_monthly&#39;</span><span class="p">)</span>
+<span class="go">set([&#39;mktrf&#39;, &#39;month&#39;, &#39;hml&#39;, &#39;umd&#39;, &#39;rf&#39;, &#39;dateff&#39;, &#39;year&#39;, &#39;date&#39;, &#39;smb&#39;])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="get-percent-null-variable-path-to-lib-dsn">
+<h2><strong>get_percent_null(variable, path_to_lib, dsn)</strong><a class="headerlink" href="#get-percent-null-variable-path-to-lib-dsn" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Returns percentage null by <cite>variable</cite> for <cite>dsn</cite> in <cite>path_to_lib</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_percent_null</span><span class="p">(</span><span class="s1">&#39;PREV_DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;/wrds/zacks/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;rating_detail&#39;</span><span class="p">)</span>
+<span class="go">15.474037693076328</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="get-rec-count-path-to-lib-dsn">
+<h2><strong>get_rec_count(path_to_lib, dsn)</strong><a class="headerlink" href="#get-rec-count-path-to-lib-dsn" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Returns total number of records for <cite>dsn</cite> in <cite>path_to_lib</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_rec_count</span><span class="p">(</span><span class="s1">&#39;/wrds/bank/sasdata/holding&#39;</span><span class="p">,</span> <span class="s1">&#39;bhcf201706&#39;</span><span class="p">)</span>
+<span class="go">4673</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="get-keys-path-to-lib-dsn">
+<h2><strong>get_keys(path_to_lib, dsn)</strong><a class="headerlink" href="#get-keys-path-to-lib-dsn" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>Returns a list of keys obtained by querying the dictionary.columns table for columns where:</dt><dd><ul class="simple">
+<li><p>sorted_by is not null</p></li>
+<li><p>sorted_by &gt; 0</p></li>
+</ul>
+</dd>
+</dl>
+<p>The empty list denotes that no keys could be found.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_keys</span><span class="p">(</span><span class="s1">&#39;/wrds/zacks/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;eps_cons_weekly&#39;</span><span class="p">)</span>
+<span class="go">[&#39;zid&#39;, &#39;est_type&#39;, &#39;reference_period&#39;, &#39;observation_date&#39;]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="get-counts-by-keys-path-to-lib-dsn-keys-none">
+<h2><strong>get_counts_by_keys(path_to_lib, dsn, keys=’NONE’)</strong><a class="headerlink" href="#get-counts-by-keys-path-to-lib-dsn-keys-none" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>Produce counts by keys. The following measures are calculated:</dt><dd><ul class="simple">
+<li><p>uniques_by_keys       :: # of unique records (keyed by provided keys)</p></li>
+<li><p>duplicates_by_keys    :: # of duplicate records (keyed by provided keys)</p></li>
+<li><p>missing_by_keys       :: # of missing records (keyed by provided keys)</p></li>
+</ul>
+</dd>
+</dl>
+<p>(Note: this will also return the keys used to produce these counts for reference.)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_counts_by_keys</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">)</span>
+<span class="go">{&#39;duplicates_by_keys&#39;: 0,</span>
+<span class="go"> &#39;keys&#39;: [&#39;date&#39;],</span>
+<span class="go"> &#39;missing_by_keys&#39;: 0,</span>
+<span class="go"> &#39;uniques_by_keys&#39;: 24265}</span>
+</pre></div>
+</div>
+<p>You can specify custom keys by using the <code class="docutils literal notranslate"><span class="pre">keys</span></code> argument:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_counts_by_keys</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;smb&#39;</span><span class="p">])</span>
+<span class="go">{&#39;duplicates_by_keys&#39;: 0,</span>
+<span class="go"> &#39;keys&#39;: [&#39;date&#39;, &#39;smb&#39;],</span>
+<span class="go"> &#39;missing_by_keys&#39;: 0,</span>
+<span class="go"> &#39;uniques_by_keys&#39;: 24265}</span>
+</pre></div>
+</div>
+<p>If you do not specify keys, appropriate keys will be obtained by querying the
+dictionary.columns table for columns where:
+* sorted_by is not null
+* sorted_by &gt; 0</p>
+</div></blockquote>
+</div>
+<div class="section" id="get-fact-path-to-lib-dsn-fact-where-1">
+<h2><strong>get_fact(path_to_lib, dsn, fact, where=’1’)</strong><a class="headerlink" href="#get-fact-path-to-lib-dsn-fact-where-1" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>A wrapper function to enable convenient retrieval of certain types of SAS facts.</p>
+<p>The query can be thought of as:</p>
+</div></blockquote>
+<div class="highlight-SAS notranslate"><div class="highlight"><pre><span></span><span class="k">libname</span> current <span class="s">&quot;&lt;path_to_lib&gt;&quot;</span><span class="kr">;</span>
+<span class="kr">proc sql;</span>
+    <span class="k">select</span>
+    &lt;fact&gt;
+    <span class="k">from</span> current.&lt;dsn&gt;
+    <span class="k">where</span> &lt;where_condition&gt;;
+
+
+&gt;&gt;&gt; get_fact(<span class="s">&#39;/wrds/ff/sasdata&#39;</span>, <span class="s">&#39;factors_monthly&#39;</span>, <span class="s">&#39;count(date)&#39;</span>, <span class="k">where</span>=<span class="s">&#39;smb = .&#39;</span>)
+<span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-null-variables-path-to-lib-dsn">
+<h2><strong>get_null_variables(path_to_lib, dsn)</strong><a class="headerlink" href="#get-null-variables-path-to-lib-dsn" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Determine which variables are entirely null (if any) for a given dataset.</p>
+<p>This returns a list of all variables that are composed entirely of missing values.</p>
+<p>If all variables contain at least <em>some</em> data, the empty list will be returned.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_null_variables</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">)</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="get-encoding-path-to-lib-dsn">
+<h2><strong>get_encoding(path_to_lib, dsn)</strong><a class="headerlink" href="#get-encoding-path-to-lib-dsn" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Determine the encoding of the given dataset.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_encoding</span><span class="p">(</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span> <span class="s1">&#39;factors_daily&#39;</span><span class="p">)</span>
+<span class="go">&#39;latin1  Western (ISO)&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="accessing_history.html" class="btn btn-neutral float-left" title="Accessing Validation History" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joe Dougherty
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

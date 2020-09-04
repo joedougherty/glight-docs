@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Crafting Custom Facts &mdash; Greenlight 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manually Gathering Facts" href="gatheringfacts.html" />
+    <link rel="prev" title="Built-in Facts" href="builtin_facts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Greenlight
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Facts:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="builtin_facts.html">Built-in Facts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Crafting Custom Facts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-fact-class">Using the Fact class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-sas-fact-class-to-run-custom-sas">Using the <strong>SAS_Fact</strong> class to run custom SAS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-include-the-stdout-macro">Step 1: Include the <strong>stdout</strong> macro.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-output-the-value-in-question-using-stdout">Step 2: Output the value in question using <strong>%stdout()</strong>.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#passing-data-into-sas-fact-at-runtime-via-initstmt">Passing data into <strong>SAS_Fact</strong> at Runtime (via initstmt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gatheringfacts.html">Manually Gathering Facts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_tests.html">Crafting Custom Tests</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basicexample.html">A Basic Usage Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advexample.html">Beyond Basic Usage: Specifying Table Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessing_history.html">Accessing Validation History</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="convenience_functions.html">Convenience Functions</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Greenlight</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Crafting Custom Facts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/crafting_custom_facts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="crafting-custom-facts">
+<h1>Crafting Custom Facts<a class="headerlink" href="#crafting-custom-facts" title="Permalink to this headline">¶</a></h1>
+<p><strong>greenlight</strong> allows you to provide your own facts about your datasets.</p>
+<div class="section" id="using-the-fact-class">
+<h2>Using the Fact class<a class="headerlink" href="#using-the-fact-class" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>Fact</strong> class is provided for you to obtain simple facts via a SAS query.</p>
+<p>Let’s say we want a custom record count for one of our tables.</p>
+<p><strong>Example:</strong> Custom Count using <strong>Fact</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">Fact</span>
+
+<span class="c1"># Step 1.) Declare the fact.</span>
+<span class="c1">#</span>
+<span class="c1"># Here we&#39;re asking how many records in ff.factors_daily have smb set to null.</span>
+<span class="n">custom_count</span> <span class="o">=</span> <span class="n">Fact</span><span class="p">(</span>
+    <span class="s1">&#39;smb_null_count&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;count(*)&#39;</span><span class="p">,</span>
+    <span class="n">path_to_lib</span><span class="o">=</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s1">&#39;factors_daily&#39;</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="s1">&#39;smb = .&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># You can also use keyword arguments to clarify intent.</span>
+<span class="n">custom_count</span> <span class="o">=</span> <span class="n">Fact</span><span class="p">(</span>
+    <span class="n">factname</span><span class="o">=</span><span class="s1">&#39;smb_null_count&#39;</span><span class="p">,</span>
+    <span class="n">fact</span><span class="o">=</span><span class="s1">&#39;count(*)&#39;</span><span class="p">,</span>
+    <span class="n">path_to_lib</span><span class="o">=</span><span class="s1">&#39;/wrds/ff/sasdata&#39;</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s1">&#39;factors_daily&#39;</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="s1">&#39;smb = .&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 2.) Obtain the fact</span>
+<span class="n">custom_count</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="s1">&#39;dev_smb_null_count&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;prod_smb_null_count&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Fact</strong> returns a dictionary (keyed by the provided <cite>factname</cite>) and the fact test result as applied to both dev and prod.</p>
+</div>
+<div class="section" id="using-the-sas-fact-class-to-run-custom-sas">
+<h2>Using the <strong>SAS_Fact</strong> class to run custom SAS<a class="headerlink" href="#using-the-sas-fact-class-to-run-custom-sas" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>SAS_Fact</strong> class is provided to allow you to collect results from you custom SAS scripts.</p>
+<p>Let’s you’ve written a script that does some analysis like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">sql</span> <span class="n">noprint</span><span class="p">;</span>
+    <span class="n">create</span> <span class="n">table</span> <span class="n">analysis</span> <span class="k">as</span>
+    <span class="n">select</span> <span class="n">distinct</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">measure</span>
+    <span class="kn">from</span> <span class="nn">dictionary.tables</span> <span class="n">a</span>
+    <span class="n">join</span> <span class="n">sometable</span> <span class="n">b</span>
+    <span class="n">on</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">measure</span>
+    <span class="n">where</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span> <span class="n">holds</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="n">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">analysis</span> <span class="n">into</span> <span class="p">:</span><span class="n">output_value</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>How can you use this with <strong>SAS_Fact?</strong></p>
+<div class="section" id="step-1-include-the-stdout-macro">
+<h3>Step 1: Include the <strong>stdout</strong> macro.<a class="headerlink" href="#step-1-include-the-stdout-macro" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">%include</span> <span class="pre">&quot;/wrds/lib/utility/stdout.sas&quot;;</span></code></p>
+</div>
+<div class="section" id="step-2-output-the-value-in-question-using-stdout">
+<h3>Step 2: Output the value in question using <strong>%stdout()</strong>.<a class="headerlink" href="#step-2-output-the-value-in-question-using-stdout" title="Permalink to this headline">¶</a></h3>
+<p>Our altered SAS script now looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">include</span> <span class="s2">&quot;/wrds/lib/utility/stdout.sas&quot;</span><span class="p">;</span>
+
+<span class="n">proc</span> <span class="n">sql</span> <span class="n">noprint</span><span class="p">;</span>
+    <span class="n">create</span> <span class="n">table</span> <span class="n">analysis</span> <span class="k">as</span>
+    <span class="n">select</span> <span class="n">distinct</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">measure</span>
+    <span class="kn">from</span> <span class="nn">dictionary.tables</span> <span class="n">a</span>
+    <span class="n">join</span> <span class="n">sometable</span> <span class="n">b</span>
+    <span class="n">on</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">measure</span>
+    <span class="n">where</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span> <span class="n">holds</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="n">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">analysis</span> <span class="n">into</span> <span class="p">:</span><span class="n">output_value</span><span class="p">;</span>
+
+<span class="o">%</span><span class="n">stdout</span><span class="p">(</span><span class="o">&amp;</span><span class="n">output_value</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now you can use <strong>SAS_Fact</strong> to obtain this value during fact gathering.</p>
+<p>First, test interactively.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">SAS_Fact</span>
+
+<span class="n">my_custom_fact</span> <span class="o">=</span> <span class="n">SAS_Fact</span><span class="p">(</span>
+    <span class="s1">&#39;my_custom_fact_key&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/wrds/some_product/utilities/custom_fact.sas&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">my_custom_fact</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="p">{</span><span class="s1">&#39;my_custom_fact_key&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">result</span> <span class="kn">from</span> <span class="nn">SAS</span><span class="o">&gt;</span><span class="p">}</span>
+
+
+<span class="c1"># You can also specify an output type for the SAS-derived value.</span>
+<span class="c1">#</span>
+<span class="c1"># Use Python&#39;s built-in types: int, float, str...</span>
+<span class="n">my_custom_fact</span> <span class="o">=</span> <span class="n">SAS_Fact</span><span class="p">(</span>
+    <span class="s1">&#39;my_custom_fact_key&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/wrds/some_product/utilities/custom_fact.sas&#39;</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="nb">int</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Once you are satisifed, add it to your custom_facts list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">custom_facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">SAS_Fact</span><span class="p">(</span>
+        <span class="s1">&#39;my_custom_fact_key&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;/wrds/some_product/utilities/custom_fact.sas&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Custom facts show up in the <strong>collected_facts</strong> dictionary and are keyed by <strong>custom_facts</strong>.</p>
+<p>The <strong>custom_facts</strong> item is a dictionary. Custom facts will be keyed by the provided <strong>factname</strong>. This is true of instances of <strong>Fact</strong> as well as <strong>SAS_Fact</strong>.</p>
+</div>
+</div>
+<div class="section" id="passing-data-into-sas-fact-at-runtime-via-initstmt">
+<h2>Passing data into <strong>SAS_Fact</strong> at Runtime (via initstmt)<a class="headerlink" href="#passing-data-into-sas-fact-at-runtime-via-initstmt" title="Permalink to this headline">¶</a></h2>
+<p>You can pass data into your custom SAS script at runtime. You can pass along macro variables as key/value pairs when declaring <strong>SAS_Fact</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">SAS_Fact</span>
+
+<span class="c1">#</span>
+<span class="c1"># This gets passed to SAS as &quot;%let var1=123456;&quot;</span>
+<span class="c1">#</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">SAS_Fact</span><span class="p">(</span><span class="s1">&#39;demo_fact&#39;</span><span class="p">,</span> <span class="s1">&#39;initstmt_example.sas&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="o">=</span><span class="mi">123456</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">obtain</span><span class="p">()</span>
+<span class="p">{</span><span class="s1">&#39;demo_fact&#39;</span><span class="p">:</span> <span class="mi">123456</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gatheringfacts.html" class="btn btn-neutral float-right" title="Manually Gathering Facts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="builtin_facts.html" class="btn btn-neutral float-left" title="Built-in Facts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joe Dougherty
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

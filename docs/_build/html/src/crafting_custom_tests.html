@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Crafting Custom Tests &mdash; Greenlight 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="A Basic Usage Example" href="basicexample.html" />
+    <link rel="prev" title="Manually Gathering Facts" href="gatheringfacts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Greenlight
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Facts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="builtin_facts.html">Built-in Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crafting_custom_facts.html">Crafting Custom Facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gatheringfacts.html">Manually Gathering Facts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tests:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Crafting Custom Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-worked-example-dev-vs-prod-record-counts">A worked example: Dev vs. Prod Record Counts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-inspect-the-collected-facts-for-an-appropriate-test-point">Step 1: Inspect the collected facts for an appropriate test point.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-write-a-test">Step 2: Write a test.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-test-your-test">Step 3: Test your test.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-run-validation-including-your-new-test">Step 4: Run Validation including your new test.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#anatomy-of-a-test">Anatomy of a Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#table-specific-tests">Table-Specific Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests-for-custom-facts">Tests for Custom Facts</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basicexample.html">A Basic Usage Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advexample.html">Beyond Basic Usage: Specifying Table Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessing_history.html">Accessing Validation History</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="convenience_functions.html">Convenience Functions</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Greenlight</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Crafting Custom Tests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/src/crafting_custom_tests.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="crafting-custom-tests">
+<h1>Crafting Custom Tests<a class="headerlink" href="#crafting-custom-tests" title="Permalink to this headline">¶</a></h1>
+<p>One of the tricky bits about validation is that what is considered “valid” may change from dataset to dataset. It may even change for the same dataset over time.</p>
+<p>As such, it is of little use to try to <em>guess</em> at what makes a given dataset “valid” or not. Flexibility <strong>must</strong> be a first-class feature, not
+something to be bolted on later.</p>
+<p>While <strong>greenlight</strong> provides a handful of reasonable sanity checks, its true power is that it gives you programmatic access to the facts about
+your dataset. This allows you to craft appropriate tests.</p>
+<p>How might you go about this?</p>
+<div class="section" id="a-worked-example-dev-vs-prod-record-counts">
+<h2>A worked example: Dev vs. Prod Record Counts<a class="headerlink" href="#a-worked-example-dev-vs-prod-record-counts" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say you are currently working on FRB (<strong>frb.all</strong>).</p>
+<p>You have decided to add a test that ensures that each new table in dev contains <em>at least</em> as many records as its production counterpart.</p>
+<div class="section" id="step-1-inspect-the-collected-facts-for-an-appropriate-test-point">
+<h3>Step 1: Inspect the collected facts for an appropriate test point.<a class="headerlink" href="#step-1-inspect-the-collected-facts-for-an-appropriate-test-point" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greenlight</span> <span class="kn">import</span> <span class="n">collect_facts</span>
+
+<span class="n">facts</span> <span class="o">=</span> <span class="n">collect_facts</span><span class="p">(</span><span class="s1">&#39;frb.all&#39;</span><span class="p">)</span>
+
+<span class="c1"># What measures are already calculated?</span>
+<span class="c1"># Each table-level comparison is just a dictionary</span>
+<span class="c1">#</span>
+<span class="c1"># Let&#39;s take a look at the first compare to see if there&#39;s anything useful here...</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">facts</span><span class="p">[</span><span class="s1">&#39;table_level_comparisons&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="p">[</span><span class="s1">&#39;dev_rec_count&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dev_var_count&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;prod_rec_count&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dev_var_list&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;vars_in_prod_but_not_in_dev&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;vars_identical_in_dev_and_prod&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;prod_var_list&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;vars_in_dev_but_not_in_prod&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dsn&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;prod_var_count&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;parent_dir&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Oh! I can use <code class="docutils literal notranslate"><span class="pre">dev_rec_count</span></code> and <code class="docutils literal notranslate"><span class="pre">prod_rec_count</span></code> here!</p>
+</div>
+<div class="section" id="step-2-write-a-test">
+<h3>Step 2: Write a test.<a class="headerlink" href="#step-2-write-a-test" title="Permalink to this headline">¶</a></h3>
+<p>Here is a sample test.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">more_obs_in_dev_than_prod</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">failures</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;table_level_comparisons&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;prod_rec_count&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;dev_rec_count&#39;</span><span class="p">]:</span>
+            <span class="n">failures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">failures</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-test-your-test">
+<h3>Step 3: Test your test.<a class="headerlink" href="#step-3-test-your-test" title="Permalink to this headline">¶</a></h3>
+<p>You already have the facts – make sure your new function does what you think it does.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">more_obs_in_dev_than_prod</span><span class="p">(</span><span class="n">facts</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-run-validation-including-your-new-test">
+<h3>Step 4: Run Validation including your new test.<a class="headerlink" href="#step-4-run-validation-including-your-new-test" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">validate</span><span class="p">(</span><span class="s1">&#39;frb.all&#39;</span><span class="p">,</span> <span class="n">custom_tests</span><span class="o">=</span><span class="p">[</span><span class="n">more_obs_in_dev_than_prod</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="anatomy-of-a-test">
+<h2>Anatomy of a Test<a class="headerlink" href="#anatomy-of-a-test" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to write a test for any/all tables, iterate over the <strong>results[‘table_level_comparisons’]</strong> list looking for tables that meet your given failure criteria.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name_is_the_test_name</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="c1"># set up a list to collect found failures</span>
+    <span class="n">failures</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># we&#39;ll take a look at every table comparison along the way</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;table_level_comparisons&#39;</span><span class="p">]:</span>
+
+        <span class="c1"># check for the failure condition</span>
+        <span class="k">if</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span>
+            <span class="c1"># add this comparison to our failures collection</span>
+            <span class="n">failures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="c1"># finally, pass back our collected failures to the caller</span>
+    <span class="k">return</span> <span class="n">failures</span>
+</pre></div>
+</div>
+<p>This same idea applies to comparison results in <strong>results[‘library_level_comparisons’]</strong>.</p>
+</div>
+<div class="section" id="table-specific-tests">
+<h2>Table-Specific Tests<a class="headerlink" href="#table-specific-tests" title="Permalink to this headline">¶</a></h2>
+<p>Specific tables can be found by <strong>dsn</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">table_specific_test</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">failures</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;table_level_comparisons&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;dsn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">&lt;</span><span class="n">table</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">other</span> <span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span>
+                <span class="n">failures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">failures</span>
+</pre></div>
+</div>
+<p>You could also write a test for multiple tables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_a_few_tables_for_the_same_condition</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">failures</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">tables_in_question</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;table1&#39;</span><span class="p">,</span> <span class="s1">&#39;table2&#39;</span><span class="p">,</span> <span class="s1">&#39;table3&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;table_level_results&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;dsn&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">tables_in_question</span><span class="p">:</span>
+            <span class="k">if</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span>
+                <span class="n">failures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">failures</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tests-for-custom-facts">
+<h2>Tests for Custom Facts<a class="headerlink" href="#tests-for-custom-facts" title="Permalink to this headline">¶</a></h2>
+<p>Custom Facts appear in the <strong>results[‘custom_facts’]</strong> dictionary.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">custom_facts_test</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;custom_facts&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;custom_fact_1&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;custom_fact_2&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="basicexample.html" class="btn btn-neutral float-right" title="A Basic Usage Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gatheringfacts.html" class="btn btn-neutral float-left" title="Manually Gathering Facts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joe Dougherty
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
